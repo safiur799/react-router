@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import { useState, useEffect } from "react";
+import { Route, Switch } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import { Users } from "./components/Users";
+import { UserDetails } from "./components/UserDetails";
+import axios from "axios";
 function App() {
+  const [state, setState] = useState();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <Switch>
+        <Route exact path="/home">
+          <Users />
+        </Route>
+        <Route path="/home/:id">
+          <UserDetails />
+        </Route>
+        <Route path="/about">about page</Route>
+        <Route path="/contact">contact page</Route>
+      </Switch>
     </div>
   );
 }
